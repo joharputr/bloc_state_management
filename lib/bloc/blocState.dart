@@ -10,5 +10,12 @@ class BlocLoading extends BlocState {}
 
 class BlocLoaded extends BlocState {
   final dynamic data;
+
   BlocLoaded(@required this.data);
+}
+
+class BlocTest extends BlocState {
+  final String dataString;
+
+  BlocTest(this.dataString);
 }

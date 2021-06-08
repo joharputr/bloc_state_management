@@ -36,7 +36,9 @@ class _HomepageState extends State<Homepage> {
                       } else if (state is BlocLoaded) {
                         return Text(state.data);
                       } else if (state is BlocError) {
-                        return Text("error");
+                        return Text(state.toString());
+                      } else if (state is BlocTest) {
+                        return Text(state.dataString);
                       }
                       return Container();
                     },
@@ -56,6 +58,7 @@ class _HomepageState extends State<Homepage> {
                   child: const Icon(Icons.add),
                   onPressed: () {
                     context.read<BlocViewModel>().add(CounterEvent.increment);
+                    context.read<BlocApi>().add(TestState("test"));
                   }),
             ),
           ],

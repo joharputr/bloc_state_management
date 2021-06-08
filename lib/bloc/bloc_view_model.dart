@@ -30,10 +30,7 @@ class BlocViewModel extends Bloc<CounterEvent, int> {
 }
 
 class BlocApi extends Bloc<BlocEvent, BlocState> {
-  BlocApi() : super(BlocEmpty());
-
-  @override
-  BlocState get initialState => BlocLoading();
+  BlocApi() : super(BlocLoading());
 
   @override
   Stream<BlocState> mapEventToState(BlocEvent event) async* {
@@ -41,12 +38,14 @@ class BlocApi extends Bloc<BlocEvent, BlocState> {
     if (event is FetchEvent) {
       yield BlocLoading();
       try {
-        print("gggg");
         final dynamic getRepoData = await api.getData();
         yield BlocLoaded(getRepoData);
       } catch (_) {
         yield BlocError();
       }
+    }
+    if (event is TestState) {
+      yield BlocTest("${event.test}");
     }
   }
 }
