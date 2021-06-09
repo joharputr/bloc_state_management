@@ -1,6 +1,7 @@
 import 'package:bloc_flutter/bloc/blocEvent.dart';
 import 'package:bloc_flutter/bloc/blocState.dart';
 import 'package:bloc_flutter/bloc/bloc_view_model.dart';
+import 'package:bloc_flutter/stream_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,7 +39,14 @@ class _HomepageState extends State<Homepage> {
                       } else if (state is BlocError) {
                         return Text(state.toString());
                       } else if (state is BlocTest) {
-                        return Text(state.dataString);
+                        return FlatButton(
+                          color: Colors.green,
+                          child: Text("sdd"),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => StreamBuilder1()));
+                          },
+                        );
                       }
                       return Container();
                     },

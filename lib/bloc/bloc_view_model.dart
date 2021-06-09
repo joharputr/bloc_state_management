@@ -36,7 +36,7 @@ class BlocApi extends Bloc<BlocEvent, BlocState> {
   Stream<BlocState> mapEventToState(BlocEvent event) async* {
     Api api = Api();
     if (event is FetchEvent) {
-      yield BlocLoading();
+      yield BlocLoading(); //state
       try {
         final dynamic getRepoData = await api.getData();
         yield BlocLoaded(getRepoData);

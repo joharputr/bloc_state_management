@@ -1,13 +1,10 @@
-import 'dart:async';
-
-import 'package:bloc_flutter/api.dart';
 import 'package:bloc_flutter/bloc/bloc_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bloc_flutter/bloc/blocState.dart';
 import 'package:bloc_flutter/homepage.dart';
 
 void main() {
+  Bloc.observer = CounterObserver();
   runApp(CounterPage());
 }
 
@@ -19,5 +16,13 @@ class CounterPage extends StatelessWidget {
       BlocProvider<BlocViewModel>(
           create: (BuildContext context) => BlocViewModel()),
     ], child: Homepage());
+  }
+}
+
+class CounterObserver extends BlocObserver {
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    super.onChange(bloc, change);
+    print('apasihini = ${bloc.runtimeType} $change');
   }
 }

@@ -16,6 +16,5 @@ class BlocLoaded extends BlocState {
 
 class BlocTest extends BlocState {
   final String dataString;
-
   BlocTest(this.dataString);
 }
